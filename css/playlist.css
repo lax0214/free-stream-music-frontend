@@ -1,0 +1,112 @@
+/* 公共样式 */
+body {
+    font-family: PingFangSC, PingFang SC;
+}
+.container {
+    width: 980px;
+    margin: 0 auto;
+}
+button {
+    border-radius: 4px;
+    border: 0px;
+    background-color: rgba(67, 113, 240, 1);
+    font-size: 14px;
+    color: #FFFFFF;
+}
+button:hover {
+    background-color: rgb(42, 99, 203);
+}
+
+/* 歌单列表 */
+#header {
+    height: 56px;
+    background: rgba(30,39,60,0.85);
+    margin-bottom: 32px;
+}
+#topbar {
+    height: 90px;
+    border-bottom: 2px solid rgba(67, 113, 240, 1);
+    margin-bottom: 40px;
+    position: relative;
+}
+#topbar input {
+    width: 20px;
+    height: 20px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #D3D4D8;
+    position: absolute;
+    top: 6px;
+}
+#topbar span {
+    width: 134px;
+    height: 32px;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 24px;
+    color: #000000;
+    line-height: 32px;
+    text-align: justify;
+    font-style: normal;
+    white-space: nowrap;
+    position: absolute;
+    left: 36px;
+}
+#topbar button {
+    width: 88px;
+    height: 32px;
+    line-height: 20px;
+    font-style: normal;
+    position: absolute;
+    right: 0px;
+}
+/* 歌单列表-内容 */
+#playlist-content {
+    display: none;
+}
+.playlist-item {
+    width: 140px;
+    margin-right: 70px;
+    border-radius: 4px;
+    float: left;
+    position: relative;
+    transition: transform,box-shadow;
+    transition-duration: 240ms;
+}
+.playlist-item input {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #D3D4D8;
+    position: absolute;
+}
+.playlist-item .cover-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 4px;
+}
+.playlist-item p {
+    width: 140px;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0,0,0,0.65);
+    line-height: 20px;
+    text-align: justify;
+    font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 4px;
+}
+.playlist-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 1px 12px rgba(0,0,0,0.30);;
+}
+#playlist-content ul {
+    margin-bottom: 40px;
+}
+#playlist-content ul li:nth-child(5) {
+    margin-right: 0px;
+}
