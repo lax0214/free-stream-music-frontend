@@ -20,7 +20,7 @@ button:hover {
 /* 歌单列表 */
 #header {
     height: 56px;
-    background: rgba(30,39,60,0.85);
+    background: rgba(30, 39, 60);
     margin-bottom: 32px;
 }
 #topbar {
@@ -29,10 +29,11 @@ button:hover {
     margin-bottom: 40px;
     position: relative;
 }
-#topbar input {
+#topbar #select-all-checkbox {
     width: 20px;
     height: 20px;
-    background: #FFFFFF;
+    display: block;
+    background-color: #FFFFFF;
     border-radius: 4px;
     border: 1px solid #D3D4D8;
     position: absolute;
