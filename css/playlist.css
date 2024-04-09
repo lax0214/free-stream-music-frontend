@@ -13,7 +13,7 @@ button {
     font-size: 14px;
     color: #FFFFFF;
 }
-button:hover {
+.button-hover:hover {
     background-color: rgb(42, 99, 203);
 }
 
@@ -28,6 +28,7 @@ button:hover {
     border-bottom: 2px solid rgba(67, 113, 240, 1);
     margin-bottom: 40px;
     position: relative;
+    display: none;
 }
 #topbar #select-all-checkbox {
     width: 20px;
@@ -58,6 +59,7 @@ button:hover {
     height: 32px;
     line-height: 20px;
     font-style: normal;
+    opacity: 0.45;
     position: absolute;
     right: 0px;
 }
@@ -110,4 +112,12 @@ button:hover {
 }
 #playlist-content ul li:nth-child(5) {
     margin-right: 0px;
+}
+/* 歌单列表-无数据 */
+#playlist-nodata {
+    width: 162px;
+    height: 188px;
+    background-image: url(/img/nodata.svg);
+    margin: 0 auto;
+    margin-top: 240px;;
 }

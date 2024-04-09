@@ -1,8 +1,5 @@
 const domain = "http://127.0.0.1:5500";
-var checkboxNum = {
-    total: 0,
-    checkedNum: 0
-}
+
 window.onload = renderPlaylist();
 
 
@@ -11,17 +8,43 @@ var exportButton = document.getElementById("button-export");
 // 变更全选和导出按钮状态 
 let checkbox = document.getElementsByClassName("playlist-item-checkbox");
 let coverImg = document.getElementsByClassName("cover-img");
+var checkboxNum = {
+    total: checkbox.length,
+    checkedNum: 0
+}
 for (let i = 0; i < checkbox.length; i++) {
     checkbox[i].addEventListener("change", () => changePlaylistStatus(checkbox[i]));
 }
 for (let i = 0; i < coverImg.length; i++) {
     coverImg[i].addEventListener("click", () => {
-        var checkbox = coverImg[i].previousElementSibling;;
-        checkbox.checked = true;
+        var checkbox = coverImg[i].previousElementSibling;
+        if (checkbox.checked) {
+            checkbox.checked = false;
+        } else {
+            checkbox.checked = true;
+        }
         changePlaylistStatus(checkbox);
     });
 }
-
+// 全选按钮逻辑
+document.getElementById("select-all-checkbox").addEventListener("change", (event) => {
+    let selectAllCheckbox = event.target;
+    if (selectAllCheckbox.checked) {
+        exportButton.style.opacity = 1;
+        exportButton.classList.add("button-hover");
+        for (let i = 0; i < checkbox.length; i++) {
+            checkbox[i].checked = true;
+        }
+        checkboxNum.checkedNum = checkbox.length;
+    } else {
+        exportButton.style.opacity = 0.45;
+        exportButton.classList.remove("button-hover");
+        for (let i = 0; i < checkbox.length; i++) {
+            checkbox[i].checked = false;
+        }
+        checkboxNum.checkedNum = 0;
+    }
+});
 function changePlaylistStatus(checkbox) {
     if (checkbox.checked) {
         checkboxNum.checkedNum++;
@@ -29,16 +52,23 @@ function changePlaylistStatus(checkbox) {
         checkboxNum.checkedNum--;
     }
     if (checkboxNum.checkedNum > 0) {
+        exportButton.style.opacity = 1;
         exportButton.disabled = false;
+        exportButton.classList.add("button-hover");
         if (checkboxNum.checkedNum == checkboxNum.total) {
             selectAllCheckbox.checked = true;
         } else {
-
+            selectAllCheckbox.checked = false;
+            
         }
     } else {
+        exportButton.style.opacity = 0.45;
         exportButton.disabled = true;
+        exportButton.classList.remove("button-hover");
     }
 }
+
+
 
 function renderPlaylist() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -51,12 +81,13 @@ function renderPlaylist() {
 
     var playlistContent = document.getElementById("playlist-content");
     playlistContent.style.display = 'block';
+    var topbar = document.getElementById("topbar");
+    topbar.style.display = 'block';
 
     var requestBody = {
         uid: uid
     };
     console.log(uid);
-    checkboxNum.total = 12;
 
     // const userInfo = document.getElementById("user-info");
     // userInfo.remove();
