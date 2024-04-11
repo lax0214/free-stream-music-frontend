@@ -69,13 +69,14 @@ function changePlaylistStatus(checkbox) {
 }
 
 
-
 function renderPlaylist() {
     const urlParams = new URLSearchParams(window.location.search);
     const uid = urlParams.get('uid');
     // 校验空值
     if (typeof uid === null || typeof uid != "string" || uid.trim() === "") {
         console.info("uid为空");
+        var playlistNodata = document.getElementById("playlist-nodata");
+        playlistNodata.style.display = 'block';
         return;
     }
 
@@ -116,3 +117,9 @@ function renderPlaylist() {
     //         console.error('错误:', error);
     //     });
 }
+
+// 点击导出歌单
+document.getElementById("button-export").addEventListener("click",  () => {
+    document.getElementById("overlay").style.display = 'block';
+    document.getElementById("pop-up-export").style.display = 'block';
+});
