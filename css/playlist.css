@@ -149,3 +149,18 @@ button {
     margin:auto;
     z-index: 1000;
 }
+#pop-up-export-title {
+    width: 512px;
+    height: 36px;
+    margin-top: 20px;
+    margin-left: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(211, 212, 216, 1);
+}
+#pop-up-export-title span {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    line-height: 20px;
+    font-style: normal;
+}
