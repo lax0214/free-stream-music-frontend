@@ -123,3 +123,43 @@ document.getElementById("button-export").addEventListener("click",  () => {
     document.getElementById("overlay").style.display = 'block';
     document.getElementById("pop-up-export").style.display = 'block';
 });
+// 导出歌单-输入邮箱
+document.getElementById("export-to-email").addEventListener("input", (event) => {
+    const inputValue = event.target.value;
+    var confirmButton = document.getElementById("export-confirm");
+    if (inputValue === '') {
+        confirmButton.disabled = true;
+        confirmButton.style.opacity = 0.45;
+        confirmButton.classList.remove("button-hover");
+    } else {
+        confirmButton.disabled = false;
+        confirmButton.style.opacity = 1;
+        confirmButton.classList.add("button-hover");
+    }
+});
+document.getElementById("export-to-email").addEventListener("change",  (event) => {
+    const inputValue = event.target.value;
+    var confirmButton = document.getElementById("export-confirm");
+    if (inputValue === '') {
+        confirmButton.disabled = true;
+        confirmButton.style.opacity = 0.45;
+        confirmButton.classList.remove("button-hover");
+    }
+});
+// 导出歌单-确认
+document.getElementById("export-confirm").addEventListener("click",  () => {
+    document.getElementById("overlay").style.display = 'none';
+    document.getElementById("pop-up-export").style.display = 'none';
+});
+// 导出歌单-取消
+document.getElementById("export-cancle").addEventListener("click",  () => {
+    document.getElementById("overlay").style.display = 'none';
+    document.getElementById("pop-up-export").style.display = 'none';
+});
+// 导出歌单-提示
+document.getElementById("export-form").addEventListener("submit",  (event) => {
+    event.preventDefault();
+    
+    document.getElementById("overlay").style.display = 'none';
+    document.getElementById("pop-up-export").style.display = 'none';
+});
