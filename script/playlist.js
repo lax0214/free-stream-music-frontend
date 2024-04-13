@@ -39,6 +39,7 @@ document.getElementById("select-all-checkbox").addEventListener("change", (event
     } else {
         exportButton.style.opacity = 0.45;
         exportButton.classList.remove("button-hover");
+        exportButton.disabled = true;
         for (let i = 0; i < checkbox.length; i++) {
             checkbox[i].checked = false;
         }
@@ -116,6 +117,58 @@ function renderPlaylist() {
     //         document.body.appendChild(userInfo);
     //         console.error('错误:', error);
     //     });
+
+    // 创建歌单列表
+    var playlistContent = document.getElementById("playlist-content");
+    var playlistData = [
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"},
+        {"id": "123123", "creator": "大魔王不爱在非洲回血", "playlistName": "妞妞的歌单", "coverImg": "http://p1.music.126.net/Mp5LGF3wdt9tkbH4dzDSXQ==/109951168491113902.jpg"}
+    ]
+    var creatorName = '';
+    var playlistUl = null;
+    for (var i = 0; i < playlistData.length; i++) {
+        var singlePlaylist = playlistData[i];
+        if (i == 0) {
+            var author = document.getElementById('author');
+            author.innerText = singlePlaylist.creator;
+        }
+        if (i % 5 == 0) {
+            playlistUl = document.createElement('ul');
+            playlistUl.classList.add("clearfix");
+            playlistContent.appendChild(playlistUl);
+        }
+        var playlistItem = document.createElement('li');
+        playlistItem.setAttribute("data-id", singlePlaylist.id);
+        playlistItem.classList.add("playlist-item");
+        // checkbox
+        var checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.classList.add("playlist-item-checkbox");
+        playlistItem.appendChild(checkbox);
+        // cover
+        var coverImg = document.createElement('img');
+        coverImg.classList.add("cover-img");
+        coverImg.setAttribute('src', singlePlaylist.coverImg);
+        playlistItem.appendChild(coverImg);
+        // playlist name
+        var playlistName = document.createElement('p');
+        playlistName.classList.add("playlist-name");
+        var text = document.createTextNode(singlePlaylist.playlistName);
+        playlistName.appendChild(text);
+        playlistItem.appendChild(playlistName);
+
+        playlistUl.appendChild(playlistItem);
+    }
 }
 
 // 点击导出歌单
@@ -150,6 +203,12 @@ document.getElementById("export-to-email").addEventListener("change",  (event) =
 document.getElementById("export-confirm").addEventListener("click",  () => {
     document.getElementById("overlay").style.display = 'none';
     document.getElementById("pop-up-export").style.display = 'none';
+    setTimeout(() => {
+        document.getElementById("export-reminder").style.display = 'block';
+    }, 500)
+    setTimeout(() => {
+        document.getElementById("export-reminder").style.display = 'none';
+    }, 3000)
 });
 // 导出歌单-取消
 document.getElementById("export-cancle").addEventListener("click",  () => {
@@ -159,7 +218,7 @@ document.getElementById("export-cancle").addEventListener("click",  () => {
 // 导出歌单-提示
 document.getElementById("export-form").addEventListener("submit",  (event) => {
     event.preventDefault();
-    
     document.getElementById("overlay").style.display = 'none';
     document.getElementById("pop-up-export").style.display = 'none';
+    // TODO 导出歌单
 });
