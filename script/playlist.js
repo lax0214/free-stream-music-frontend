@@ -200,7 +200,17 @@ document.getElementById("export-to-email").addEventListener("change",  (event) =
     }
 });
 // 导出歌单-确认
-document.getElementById("export-confirm").addEventListener("click",  () => {
+document.getElementById("export-form").addEventListener("submit",  (event) => {
+    event.preventDefault();
+
+    var emailInput = document.getElementById("export-to-email");
+    var email = emailInput.value;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("邮箱格式错误🥴");
+        return;
+    }
+
     document.getElementById("overlay").style.display = 'none';
     document.getElementById("pop-up-export").style.display = 'none';
     setTimeout(() => {
@@ -209,16 +219,11 @@ document.getElementById("export-confirm").addEventListener("click",  () => {
     setTimeout(() => {
         document.getElementById("export-reminder").style.display = 'none';
     }, 3000)
+
+    // TODO 导出歌单
 });
 // 导出歌单-取消
 document.getElementById("export-cancle").addEventListener("click",  () => {
     document.getElementById("overlay").style.display = 'none';
     document.getElementById("pop-up-export").style.display = 'none';
-});
-// 导出歌单-提示
-document.getElementById("export-form").addEventListener("submit",  (event) => {
-    event.preventDefault();
-    document.getElementById("overlay").style.display = 'none';
-    document.getElementById("pop-up-export").style.display = 'none';
-    // TODO 导出歌单
 });
