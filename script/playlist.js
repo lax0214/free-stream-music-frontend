@@ -184,17 +184,21 @@ function renderPlaylist() {
                     return;
                 }
 
-                var playlistIds = [];
+                var requestPlaylist = [];
                 let checkboxs = document.getElementsByClassName("playlist-item-checkbox");
                 for (let i = 0; i < checkboxs.length; i++) {
                     if (checkboxs[i].checked) {
-                        playlistIds.push(checkbox[i].parentElement.getAttribute("data-id"));
+                        var reqPlaylist = {
+                            "id": checkbox[i].parentElement.getAttribute("data-id"), 
+                            "playlistName": checkbox[i].nextElementSibling.nextElementSibling.textContent
+                        }
+                        requestPlaylist.push(reqPlaylist);
                     }
                 }
 
                 var requestBody = {
-                    email: email,
-                    playlistIds: playlistIds
+                    "email": email,
+                    "playlist": requestPlaylist
                 };
                 fetch("http://127.0.0.1:8080" + "/netease/playlist/download", {
                     method: 'POST',
