@@ -1,4 +1,4 @@
-const domain = "http://127.0.0.1:5500";
+const domain = "https://music.freestream.space";
 
 window.onload = renderPlaylist();
 
@@ -14,7 +14,7 @@ function renderPlaylist() {
     }
     console.log(uid);
 
-    const requestUrl = "http://127.0.0.1:8080" + "/netease/playlist/display?uid=" + uid;
+    const requestUrl = domain + "/api/netease/playlist/display?uid=" + uid;
     fetch(requestUrl)
         .then(response => {
             if (response.ok) {
@@ -200,7 +200,7 @@ function renderPlaylist() {
                     "email": email,
                     "playlist": requestPlaylist
                 };
-                fetch("http://127.0.0.1:8080" + "/netease/playlist/download", {
+                fetch(domain + "/api/netease/playlist/download", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
