@@ -106,6 +106,7 @@ function renderPlaylist() {
                 let selectAllCheckbox = event.target;
                 if (selectAllCheckbox.checked) {
                     exportButton.style.opacity = 1;
+                    exportButton.disabled = false;
                     exportButton.classList.add("button-hover");
                     for (let i = 0; i < checkbox.length; i++) {
                         checkbox[i].checked = true;
